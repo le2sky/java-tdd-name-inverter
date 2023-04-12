@@ -25,7 +25,7 @@ public class NameInverterTest {
         if (name == null || name.isEmpty()) {
             return "";
         } else {
-            List<String> names = new ArrayList<>(Arrays.asList(name.trim().split("\\s+")));
+            List<String> names = splitNames(name);
             if (names.size() > 1 && isHonorific(names)) {
                 names.remove(0);
             }
@@ -35,6 +35,10 @@ public class NameInverterTest {
                 return names.get(0);
             }
         }
+    }
+
+    private ArrayList<String> splitNames(String name) {
+        return new ArrayList<>(Arrays.asList(name.trim().split("\\s+")));
     }
 
     private boolean isHonorific(List<String> names) {
