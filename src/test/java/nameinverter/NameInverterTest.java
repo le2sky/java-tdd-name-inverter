@@ -10,9 +10,14 @@ public class NameInverterTest {
     void name() {
         assertThat(invert(null)).isEqualTo("");
         assertThat(invert("")).isEqualTo("");
+        assertThat(invert("name")).isEqualTo("name");
     }
 
     private String invert(String name) {
-        return "";
+        if (name == null || name.isEmpty()) {
+            return "";
+        } else {
+            return name;
+        }
     }
 }
