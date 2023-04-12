@@ -2,6 +2,9 @@ package nameinverter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class NameInverterTest {
@@ -14,17 +17,22 @@ public class NameInverterTest {
         assertThat(invert("first last")).isEqualTo("last, first");
         assertThat(invert("   name    ")).isEqualTo("name");
         assertThat(invert("first     last")).isEqualTo("last, first");
+        assertThat(invert("Mr. first last")).isEqualTo("last, first");
+        assertThat(invert("Mrs. first last")).isEqualTo("last, first");
     }
 
     private String invert(String name) {
         if (name == null || name.isEmpty()) {
             return "";
         } else {
-            String[] names = name.trim().split("\\s+");
-            if (names.length == 2) {
-                return String.format("%s, %s", names[1], names[0]);
+            List<String> names = new ArrayList<>(Arrays.asList(name.trim().split("\\s+")));
+            if (names.size() > 1 && (names.get(0).equals("Mr.")) || names.get(0).equals("Mrs.")) {
+                names.remove(0);
+            }
+            if (names.size() == 2) {
+                return String.format("%s, %s", names.get(1), names.get(0));
             } else {
-                return names[0];
+                return names.get(0);
             }
         }
     }
