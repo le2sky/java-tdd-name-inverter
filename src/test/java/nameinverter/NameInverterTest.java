@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 public class NameInverterTest {
@@ -22,6 +21,7 @@ public class NameInverterTest {
         assertThat(invert("Mrs. first last")).isEqualTo("last, first");
         assertThat(invert("first last SR.")).isEqualTo("last, first SR.");
         assertThat(invert("first last BS. Phd")).isEqualTo("last, first BS. Phd");
+        assertThat(invert("   Robert Martin III esq.  ")).isEqualTo("Martin, Robert III esq.");
     }
 
     private String invert(String name) {
