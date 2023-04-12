@@ -26,13 +26,17 @@ public class NameInverterTest {
             return "";
         } else {
             List<String> names = splitNames(name);
-            if (names.size() > 1 && isHonorific(names)) {
-                names.remove(0);
-            }
+            removeHonorific(names);
             if (names.size() != 2) {
                 return names.get(0);
             }
             return String.format("%s, %s", names.get(1), names.get(0));
+        }
+    }
+
+    private void removeHonorific(List<String> names) {
+        if (names.size() > 1 && isHonorific(names)) {
+            names.remove(0);
         }
     }
 
