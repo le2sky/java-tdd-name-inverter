@@ -29,11 +29,10 @@ public class NameInverterTest {
             if (names.size() > 1 && isHonorific(names)) {
                 names.remove(0);
             }
-            if (names.size() == 2) {
-                return String.format("%s, %s", names.get(1), names.get(0));
-            } else {
+            if (names.size() != 2) {
                 return names.get(0);
             }
+            return String.format("%s, %s", names.get(1), names.get(0));
         }
     }
 
