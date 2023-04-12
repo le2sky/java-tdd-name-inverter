@@ -42,6 +42,6 @@ public class NameInverterTest {
     }
 
     private boolean isHonorific(List<String> names) {
-        return (names.get(0).equals("Mr.")) || names.get(0).equals("Mrs.");
+        return names.get(0).matches("Mr\\.|Mrs\\.");
     }
 }
